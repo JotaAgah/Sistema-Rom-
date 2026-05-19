@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romã Studio</title>
+    
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Variáveis de Cores e Estilos --- */
+        :root {
+            --cor-primaria: #3d0c15; /* Bordô escuro do topo */
+            --cor-secundaria: #5a1222; /* Bordô avermelhado dos textos e botões */
+            --cor-fundo: #f9f7f7; /* Off-white do fundo do app */
+            --cor-texto: #666666; /* Cinza para textos descritivos */
+            --cor-branco: #ffffff;
+            --cor-borda: #eaeaea;
+            --cor-whatsapp: #25D366;
+            
+            --fonte-titulo: 'Playfair Display', serif;
+            --fonte-texto: 'Inter', sans-serif;
+        }
+
+        /* --- Reset Básico --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--fonte-texto);
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            padding-bottom: 70px; /* Espaço para o menu inferior */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Tipografia --- */
+        h1, h2, h3 {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-secundaria);
+            font-weight: 700;
+        }
+
+        /* --- Header Topo --- */
+        .top-header {
+            background-color: var(--cor-primaria);
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-placeholder {
+            color: var(--cor-branco);
+            font-family: var(--fonte-titulo);
+            font-size: 2.0rem; /* Tamanho maior e elegante */
+            letter-spacing: 2px;
+            text-align: center;
+            line-height: 1;
+        }
+        .logo-placeholder span {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            font-family: var(--fonte-texto);
+        }
+
+        /* --- Área de Conteúdo --- */
+        .container {
+            padding: 24px 20px;
+        }
+
+        .page-header {
+            margin-bottom: 24px;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            font-size: 0.95rem;
+            color: var(--cor-texto);
+        }
+
+        /* --- Faixa de Categoria (Pés & Mãos) --- */
+        .category-banner {
+            background-color: var(--cor-primaria);
+            color: var(--cor-branco);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 -20px 24px -20px; /* Estica até as bordas */
+        }
+
+        .category-banner h2 {
+            color: var(--cor-branco);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- Container da Grade (O segredo da vitrine) --- */
+        .services-container {
+            display: grid;
+            grid-template-columns: 1fr; /* 1 coluna no celular */
+            gap: 24px;
+            max-width: 1100px; /* Limite de largura para não esticar demais no PC */
+            margin: 0 auto; /* Centraliza tudo na tela */
+            padding: 20px;
+        }
+
+        /* No PC, muda a grade para 3 colunas lado a lado */
+        @media (min-width: 768px) {
+            .services-container {
+                grid-template-columns: repeat(3, 1fr); /* 3 cartões por linha! */
+                gap: 30px;
+            }
+        }
+
+        /* --- O Cartão de Serviço --- */
+        .service-card {
+            background-color: var(--cor-branco);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Faz todos os cartões da mesma linha terem a mesma altura */
+        }
+
+        /* --- A Imagem (Tamanho perfeito sem cortar errado) --- */
+        .service-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover; /* A foto preenche a caixa perfeitamente */
+            display: block;
+        }
+
+        .service-details {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; /* Empurra o botão de agendar sempre para o fundo do cartão */
+        }
+
+        .service-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .service-title-row h3 {
+            font-size: 1.2rem;
+            max-width: 70%;
+        }
+
+        .service-price {
+            font-weight: 600;
+            color: var(--cor-secundaria);
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        /* --- Horários --- */
+        .times-section h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            margin-bottom: 12px;
+        }
+
+        .times-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: none; /* Esconde barra no Firefox */
+        }
+        
+        .times-scroll::-webkit-scrollbar {
+            display: none; /* Esconde barra no Chrome/Safari */
+        }
+
+        .time-pill {
+            background: transparent;
+            border: 1px solid var(--cor-borda);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: var(--fonte-texto);
+            font-weight: 600;
+            color: var(--cor-secundaria);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .time-pill:hover, .time-pill.active {
+            border-color: var(--cor-secundaria);
+            background-color: #fff9fa;
+        }
+
+        .btn-selecione {
+            width: 100%;
+            background-color: #F3EFEB;
+            color: #b5b5b5;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-family: var(--fonte-texto);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Botão ativo (Exemplo para usar com JS depois) */
+        .btn-selecione.active {
+            background-color: var(--cor-secundaria);
+            color: var(--cor-branco);
+            cursor: pointer;
+        }
+
+        /* --- Classes Extras para a Tela de Contato (Baseado nas imagens) --- */
+        .btn-whatsapp {
+            background-color: var(--cor-whatsapp);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--cor-secundaria);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        /* --- Menu Inferior (Bottom Nav) --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--cor-branco);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 70px;
+            border-top: 1px solid var(--cor-borda);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #999;
+            font-size: 0.75rem;
+            gap: 6px;
+            flex: 1;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .nav-item i {
+            font-size: 1.2rem;
+        }
+
+        .nav-item.active {
+            color: var(--cor-secundaria);
+            font-weight: 600;
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            width: 40px;
+            height: 3px;
+            background-color: var(--cor-secundaria);
+            border-radius: 0 0 4px 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Topo -->
+    <header class="top-header">
+    <div class="logo-placeholder">
+        RM
+        <span>ROMÃ STUDIO</span>
+    </div>
+</header>
+
+    <!-- Conteúdo Principal (Tela de Serviços) -->
+    <main class="container">
+        
+        <div class="page-header">
+            <h1>Nossos Serviços</h1>
+            <p>Selecione um serviço, escolha o horário e reserve.</p>
+        </div>
+
+        <!-- Categoria -->
+        <div class="category-banner">
+            <h2><i class="fa-solid fa-hand-sparkles"></i> Pés, Mãos & Cílios</h2>
+            <div class="service-count">4 serviços</div>
+        </div>
+<div class="services-container"></div>
+        <!-- Cartão de Serviço 1 -->
+        <div class="service-card">
+            <img src="imagens/foto-esfoliacao.jpg" alt="Esfoliação e hidratação dos pés" class="service-image">
+            
+            <div class="service-details">
+            <div class="service-details">
+                <div class="service-title-row">
+                    <h3>Esfoliação e hidratação dos pés</h3>
+                    <div class="service-price">R$ 55,00</div>
+                </div>
+                <p class="service-desc">Cuidado profundo com esfoliação e hidratação intensiva</p>
+                
+                <div class="times-section">
+                    <h4>Duração: 45 minutos</h4>
+                    <div class="times-scroll">
+                    <button class="btn-selecione active btn-calendly" data-url="https://calendly.com/joaopinsfp/esfoliacao">Agende seu horário aqui!</button>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <!-- Cartão de Serviço 2 (Exemplo parcial simulando o scroll) -->
+        <div class="service-card">
+            <img src="imagens/foto-manicure.jpg" alt="Manicure tradicional" class="service-image">
+            
+            <div class="service-details">
+            
+            <div class="service-details">
+                <div class="service-title-row">
+                    <h3>Manicure Tradicional</h3>
+                    <div class="service-price">R$ 35,00</div>
+                </div>
+                <p class="service-desc">Limpeza, cutilagem e esmaltação perfeita para o dia a dia.</p>
+                
+                <div class="times-section">
+                    <h4>Duração: 40 minutos</h4>
+                    <div class="times-scroll">
+                    <button class="btn-selecione active btn-calendly" data-url=https://calendly.com/joaopinsfp/manicure>Agende seu horário aqui!</button>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <!--Cartão de serviço 3-->
+        <div class="service-card">
+            <img src="imagens/foto-cilios.png" alt="Cílos Brasileiros" class="service-image">
+            
+            <div class="service-details">
+            <div class="service-details">
+                <div class="service-title-row">
+                    <h3>Cílios</h3>
+                    <div class="service-price">R$ 120,00</div>
+                </div>
+                <p class="service-desc"></p>
+                
+                <div class="times-section">
+                    <h4>Duração: 2 horas</h4>
+                    <div class="times-scroll">
+                    <button class="btn-selecione active btn-calendly" data-url=https://calendly.com/joaopinsfp/cilios-brasileiros>Agende seu horário aqui!</button>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <!--Serviço 4-->
+        <div class="service-card">
+            <img src="imagens/foto-buço.jpg" alt="Buço" class="service-image">
+            
+            <div class="service-details">
+            <div class="service-details">
+                <div class="service-title-row">
+                    <h3>Buço</h3>
+                    <div class="service-price">R$ 10,00</div>
+                </div>
+                <p class="service-desc"></p>
+                
+                <div class="times-section">
+                    <h4>Duração: 10 minutos</h4>
+                    <div class="times-scroll">
+                    <button class="btn-selecione active btn-calendly" data-url=https://calendly.com/joaopinsfp/30min>Agende seu horário aqui!</button>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        </div>
+
+    </main>
+
+    <!-- Menu Inferior -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="servicos.html" class="nav-item active">
+            <i class="fa-regular fa-clipboard"></i>
+            <span>Serviços</span>
+        </a>
+        <a href="contato.html" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>Contato</span>
+        </a>
+    </nav>
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    
+    <script>
+        // Espera a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Pega todos os botões que têm a classe btn-calendly
+            const botoesCalendly = document.querySelectorAll('.btn-calendly');
+            
+            botoesCalendly.forEach(botao => {
+                botao.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Pega o link que está no data-url do botão
+                    const linkCalendly = this.getAttribute('data-url');
+                    
+                    // Abre o Pop-up oficial do Calendly
+                    Calendly.initPopupWidget({ url: linkCalendly });
+                    return false;
+                });
+            });
+            
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romã Studio - Contato</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --cor-primaria: #3d0c15; 
+            --cor-secundaria: #5a1222; 
+            --cor-fundo: #f9f7f7; 
+            --cor-texto: #666666; 
+            --cor-branco: #ffffff;
+            --cor-borda: #eaeaea;
+            --cor-whatsapp: #25D366;
+            --fonte-titulo: 'Playfair Display', serif;
+            --fonte-texto: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--fonte-texto); background-color: var(--cor-fundo); color: var(--cor-texto); padding-bottom: 90px; }
+        h1, h2, h3 { font-family: var(--fonte-titulo); color: var(--cor-secundaria); font-weight: 700; }
+
+        /* --- Header Topo --- */
+        .top-header { background-color: var(--cor-primaria); height: 60px; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 100; }
+       .logo-placeholder {
+            color: var(--cor-branco);
+            font-family: var(--fonte-titulo);
+            font-size: 2.0rem; /* Tamanho maior e elegante */
+            letter-spacing: 2px;
+            text-align: center;
+            line-height: 1;
+        }
+        .logo-placeholder span {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            font-family: var(--fonte-texto);
+        }
+        .container { padding: 24px 20px; }
+        .page-header { margin-bottom: 24px; }
+        .page-header h1 { font-size: 2rem; margin-bottom: 8px; }
+        .page-header p { font-size: 0.95rem; }
+
+        .section-label { font-size: 0.75rem; font-weight: 700; color: #b5b5b5; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; margin-top: 32px; }
+
+        /* --- Card de Contato e Mapa --- */
+        .contact-card { background-color: var(--cor-branco); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 24px; }
+        .map-placeholder { background-color: #EBE8E6; height: 120px; display: flex; justify-content: center; align-items: center; color: #888; font-weight: 500; }
+        .map-placeholder i { color: #d6336c; margin-right: 8px; font-size: 1.2rem; }
+        
+        .contact-list { padding: 0 20px; }
+        .contact-item { display: flex; align-items: flex-start; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--cor-borda); }
+        .contact-item:last-child { border-bottom: none; }
+        
+        .icon-box { background-color: var(--cor-fundo); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #d6336c; flex-shrink: 0; }
+        .icon-box.gray { color: #555; }
+        
+        .contact-info h4 { font-family: var(--fonte-texto); font-size: 0.95rem; color: var(--cor-primaria); margin-bottom: 4px; font-weight: 600; }
+        .contact-info p { font-size: 0.9rem; line-height: 1.5; }
+
+        /* --- Botões --- */
+        .btn-whatsapp { background-color: var(--cor-whatsapp); color: white; border: none; width: 100%; padding: 16px; border-radius: 12px; font-size: 1rem; font-weight: 600; display: flex; justify-content: center; align-items: center; gap: 10px; cursor: pointer; }
+        .btn-primary { background-color: var(--cor-primaria); color: white; border: none; width: 100%; padding: 16px; border-radius: 12px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
+
+        /* --- Formulário --- */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--cor-primaria); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .form-control { width: 100%; padding: 16px; border: 1px solid var(--cor-borda); border-radius: 12px; font-family: var(--fonte-texto); font-size: 1rem; color: var(--cor-texto); background-color: var(--cor-branco); outline: none; }
+        .form-control::placeholder { color: #bbb; }
+        textarea.form-control { resize: none; height: 120px; }
+
+        /* --- Redes Sociais --- */
+        .social-grid { display: flex; gap: 12px; justify-content: space-between; margin-bottom: 40px; }
+        .social-item { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+        .social-btn { background-color: var(--cor-primaria); color: white; width: 100%; height: 70px; border-radius: 16px; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; text-decoration: none; }
+        .social-item span { font-size: 0.8rem; color: #888; }
+
+        .footer-text { text-align: center; font-family: var(--fonte-titulo); font-style: italic; color: #b5b5b5; font-size: 0.9rem; margin-bottom: 20px; }
+
+        /* --- Menu Inferior --- */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--cor-branco); display: flex; justify-content: space-around; align-items: center; height: 70px; border-top: 1px solid var(--cor-borda); z-index: 100; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #999; font-size: 0.75rem; gap: 6px; flex: 1; padding: 10px 0; position: relative; }
+        .nav-item i { font-size: 1.2rem; }
+        .nav-item.active { color: var(--cor-secundaria); font-weight: 600; }
+        .nav-item.active::before { content: ''; position: absolute; top: -1px; width: 40px; height: 3px; background-color: var(--cor-secundaria); border-radius: 0 0 4px 4px; }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="logo-placeholder">
+        RM
+        <span>ROMÃ STUDIO</span>
+    </div>
+</header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>Contato & Dúvidas</h1>
+            <p>Estamos aqui para te ajudar.</p>
+        </div>
+
+        <div class="section-label">Encontre-nos</div>
+
+        
+            
+            <div class="contact-list">
+                <div class="contact-item">
+                    <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="contact-info">
+                        <h4>Endereço</h4>
+                        <p>Rua Julio Dante Risso 219<br>Ribeirão Preto - SP</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+                    <div class="contact-info">
+                        <h4>Telefone</h4>
+                        <p> (16) 99189-1772</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="icon-box gray"><i class="fa-regular fa-clock"></i></div>
+                    <div class="contact-info">
+                        <h4>Horário</h4>
+                        <p>Seg-Sex: 09:00 às 19:00<br>Sáb: 09:00 às 17:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="https://api.whatsapp.com/send/?phone=5516991891772&text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+        target="_blank" class = "btn-whatsapp"
+        style="text-decoration: none;">
+    <i class="fa-brands fa-whatsapp"></i>Falar pelo WhatsApp</a>
+
+        
+
+        <div class="section-label" style="margin-top: 40px;">Redes Sociais</div>
+
+        <div class="social-grid">
+            <div class="social-item">
+                <a href="https://www.instagram.com/roma_studiorp" target ="_blank" class="social-btn">
+                    <i class="fa-brands fa-instagram"></i></a>
+                <span>Instagram</span>
+            </div>
+            <div class="social-item">
+                <a href="https://api.whatsapp.com/send/?phone=5516991891772&text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="social-btn">
+                    <i class="fa-brands fa-whatsapp"></i></a>
+                <span>WhatsApp</span>
+            </div>
+            
+        </div>
+
+        <div class="footer-text">
+            Romã Studio — Beleza que cuida de você ✦
+        </div>
+
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="servicos.html" class="nav-item">
+            <i class="fa-regular fa-clipboard"></i>
+            <span>Serviços</span>
+        </a>
+        <a href="contato.html" class="nav-item active">
+            <i class="fa-regular fa-comment"></i>
+            <span>Contato</span>
+        </a>
+    </nav>
+
+</body>
+</html>
