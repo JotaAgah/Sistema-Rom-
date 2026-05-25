@@ -115,72 +115,165 @@
             align-items: center;
             gap: 10px;
         }
-
-        /* --- Container da Grade (O segredo da vitrine) --- */
-        .services-container {
-            display: grid;
-            grid-template-columns: 1fr; /* 1 coluna no celular */
-            gap: 24px;
-            max-width: 1100px; /* Limite de largura para não esticar demais no PC */
-            margin: 0 auto; /* Centraliza tudo na tela */
-            padding: 20px;
+        /* --- Barra de Categoria (Pés, Mãos & Cílios) --- */
+        .category-bar {
+            background-color: #5a1222;
+            color: #ffffff;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            width: 100%;
         }
 
-        /* No PC, muda a grade para 3 colunas lado a lado */
+        .category-bar-content {
+            max-width: 1100px; /* Alinha perfeitamente com os cartões */
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .category-title i {
+            font-size: 1.2rem;
+        }
+
+        .category-title h3 {
+            font-family: var(--fonte-titulo), serif;
+            font-size: 1.3rem;
+            margin: 0;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .category-count {
+            font-family: var(--fonte-texto), sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* --- Container dos Serviços (Lista Vertical) --- */
+/* =========================================
+           ESTILOS DOS SERVIÇOS (VITRINE / GRADE)
+           ========================================= */
+
+        /* --- Container Principal (A Grade) --- */
+        /* --- Container Principal (A Grade) --- */
+       /* 1. DESTRAVA A SEÇÃO PRINCIPAL (A "MÃE" DE TUDO) */
+        .services-section {
+            width: 100% !important;
+            max-width: 100% !important;
+            display: block !important; /* Se tiver algum flex espremendo aqui, isso desativa */
+            padding-bottom: 50px;
+        }
+
+        /* 2. FORÇA A CAIXA A ESTICAR ATÉ 1100PX */
+        .services-container {
+            display: grid !important;
+            grid-template-columns: 1fr !important; 
+            gap: 30px;
+            width: 100% !important; 
+            max-width: 1100px !important; /* Limite de estiramento */
+            margin: 0 auto !important; /* Centraliza */
+            padding: 20px;
+            box-sizing: border-box !important;
+        }
+
         @media (min-width: 768px) {
             .services-container {
-                grid-template-columns: repeat(3, 1fr); /* 3 cartões por linha! */
-                gap: 30px;
+                grid-template-columns: repeat(3, 1fr) !important; 
             }
         }
 
-        /* --- O Cartão de Serviço --- */
+        /* 3. OBRIGA CADA CARTÃO A PREENCHER SUA COLUNA */
         .service-card {
-            background-color: var(--cor-branco);
+            background-color: #ffffff;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            height: 100%; /* Faz todos os cartões da mesma linha terem a mesma altura */
+            display: flex !important;
+            flex-direction: column !important;
+            height: 100% !important;
+            width: 100% !important; /* 👉 IMPEDE O CARTÃO DE FICAR FININHO */
         }
 
-        /* --- A Imagem (Tamanho perfeito sem cortar errado) --- */
+        /* --- A Imagem --- */
         .service-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover; /* A foto preenche a caixa perfeitamente */
+            width: 100% !important;
+            height: 220px !important;
+            object-fit: cover;
             display: block;
         }
 
+        /* --- Área de Detalhes --- */
         .service-details {
             padding: 24px;
             display: flex;
             flex-direction: column;
-            flex-grow: 1; /* Empurra o botão de agendar sempre para o fundo do cartão */
+            flex-grow: 1; /* Preenche o espaço vazio e alinha os botões no fundo */
         }
 
-        .service-title-row {
+        /* --- Estilo dos Textos e Botão --- */
+        .service-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            gap: 15px;
         }
 
-        .service-title-row h3 {
-            font-size: 1.2rem;
-            max-width: 70%;
+        .service-header h3 {
+            color: #5a1222;
+            font-family: var(--fonte-titulo), serif;
+            font-size: 1.3rem;
+            margin: 0;
+            line-height: 1.3;
         }
 
         .service-price {
-            font-weight: 600;
-            color: var(--cor-secundaria);
+            font-weight: 700;
+            color: #5a1222;
+            font-size: 1.1rem;
+            white-space: nowrap;
         }
 
-        .service-desc {
-            font-size: 0.9rem;
-            line-height: 1.4;
+        .service-description {
+            color: #666666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .service-duration {
+            font-size: 0.75rem;
+            color: #999999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 20px;
+            margin-top: auto; /* Truque para empurrar o botão sempre para o final do cartão */
+        }
+
+        .btn-agendar {
+            background-color: #5a1222;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-agendar:hover {
+            background-color: #3d0c17;
         }
 
         /* --- Horários --- */
@@ -323,6 +416,9 @@
             border-radius: 0 0 4px 4px;
         }
     </style>
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</head>
 </head>
 <body>
 
@@ -335,115 +431,79 @@
 </header>
 
     <!-- Conteúdo Principal (Tela de Serviços) -->
-    <main class="container">
+   <main style="width: 100% !important; display: block !important; max-width: 100% !important;">
+    
+    <section class="services-section" style="width: 100%; max-width: 100%;">
         
-        <div class="page-header">
-            <h1>Nossos Serviços</h1>
-            <p>Selecione um serviço, escolha o horário e reserve.</p>
-        </div>
+        <h2 class="section-title" style="text-align: center;">Nossos Serviços</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Selecione um serviço, escolha o horário e reserve.</p>
 
-        <!-- Categoria -->
-        <div class="category-banner">
-            <h2><i class="fa-solid fa-hand-sparkles"></i> Pés, Mãos & Cílios</h2>
-            <div class="service-count">4 serviços</div>
-        </div>
-<div class="services-container"></div>
-        <!-- Cartão de Serviço 1 -->
-        <div class="service-card">
-            <img src="imagens/foto-esfoliacao.jpg" alt="Esfoliação e hidratação dos pés" class="service-image">
-            
-            <div class="service-details">
-            <div class="service-details">
-                <div class="service-title-row">
-                    <h3>Esfoliação e hidratação dos pés</h3>
-                    <div class="service-price">R$ 55,00</div>
+        <div class="category-bar">
+            <div class="category-bar-content">
+                <div class="category-title">
+                    <i class="fa-solid fa-hand-sparkles"></i>
+                    <h3>Pés, Mãos & Cílios</h3>
                 </div>
-                <p class="service-desc">Cuidado profundo com esfoliação e hidratação intensiva</p>
-                
-                <div class="times-section">
-                    <h4>Duração: 45 minutos</h4>
-                    <div class="times-scroll">
-                    <button class="btn-selecione active btn-calendly" data-url="https://calendly.com/joaopinsfp/esfoliacao">Agende seu horário aqui!</button>
-                    </div>
-                </div>
-
-                
+                <span class="category-count">4 serviços</span>
             </div>
         </div>
 
-        <!-- Cartão de Serviço 2 (Exemplo parcial simulando o scroll) -->
-        <div class="service-card">
-            <img src="imagens/foto-manicure.jpg" alt="Manicure tradicional" class="service-image">
-            
-            <div class="service-details">
-            
-            <div class="service-details">
-                <div class="service-title-row">
-                    <h3>Manicure Tradicional</h3>
-                    <div class="service-price">R$ 35,00</div>
-                </div>
-                <p class="service-desc">Limpeza, cutilagem e esmaltação perfeita para o dia a dia.</p>
-                
-                <div class="times-section">
-                    <h4>Duração: 40 minutos</h4>
-                    <div class="times-scroll">
-                    <button class="btn-selecione active btn-calendly" data-url=https://calendly.com/joaopinsfp/manicure>Agende seu horário aqui!</button>
+        <div class="services-container">
+
+            <div class="service-card">
+                <img src="imagens/foto-esfoliacao.jpg" alt="Pés e Mãos" class="service-image">
+                <div class="service-details">
+                    <div class="service-header">
+                        <h3>Esfoliação e hidratação dos pés</h3>
+                        <span class="service-price">R$ 55,00</span>
                     </div>
+                    <p class="service-description">Cuidado profundo com esfoliação e hidratação intensiva.</p>
+                    <p class="service-duration">DURAÇÃO: 45 MINUTOS</p>
+                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/joaopinsfp/esfoliacao'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
                 </div>
-
-                
             </div>
-        </div>
 
-        <!--Cartão de serviço 3-->
-        <div class="service-card">
-            <img src="imagens/foto-cilios.png" alt="Cílos Brasileiros" class="service-image">
-            
-            <div class="service-details">
-            <div class="service-details">
-                <div class="service-title-row">
-                    <h3>Cílios</h3>
-                    <div class="service-price">R$ 120,00</div>
-                </div>
-                <p class="service-desc"></p>
-                
-                <div class="times-section">
-                    <h4>Duração: 2 horas</h4>
-                    <div class="times-scroll">
-                    <button class="btn-selecione active btn-calendly" data-url=https://calendly.com/joaopinsfp/cilios-brasileiros>Agende seu horário aqui!</button>
+            <div class="service-card">
+                <img src="imagens/foto-manicure.jpg" alt="Manicure" class="service-image">
+                <div class="service-details">
+                    <div class="service-header">
+                        <h3>Manicure Tradicional</h3>
+                        <span class="service-price">R$ 37,00</span>
                     </div>
+                    <p class="service-description">Limpeza, cutilagem e esmaltação perfeita para o dia a dia.</p>
+                    <p class="service-duration">DURAÇÃO: 45 MINUTOS</p>
+                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/joaopinsfp/manicure'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
                 </div>
-
-                
             </div>
-        </div>
 
-        <!--Serviço 4-->
-        <div class="service-card">
-            <img src="imagens/foto-buço.jpg" alt="Buço" class="service-image">
-            
-            <div class="service-details">
-            <div class="service-details">
-                <div class="service-title-row">
-                    <h3>Buço</h3>
-                    <div class="service-price">R$ 10,00</div>
-                </div>
-                <p class="service-desc"></p>
-                
-                <div class="times-section">
-                    <h4>Duração: 10 minutos</h4>
-                    <div class="times-scroll">
-                    <button class="btn-selecione active btn-calendly" data-url=https://calendly.com/joaopinsfp/30min>Agende seu horário aqui!</button>
+            <div class="service-card">
+                <img src="imagens/foto-cilios.png" alt="Cílios" class="service-image">
+                <div class="service-details">
+                    <div class="service-header">
+                        <h3>Cílios</h3>
+                        <span class="service-price">R$ 120,00</span>
                     </div>
+                    <p class="service-description">Cuidado e alongamento dos cílios para um olhar marcante.</p>
+                    <p class="service-duration">DURAÇÃO: 120 MINUTOS</p>
+                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/joaopinsfp/cilios-brasileiros'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
                 </div>
-
-                
             </div>
-        </div>
 
-        </div>
+            <div class="service-card">
+                <img src="imagens/foto-buço.jpg" alt="Buço" class="service-image">
+                <div class="service-details">
+                    <div class="service-header">
+                        <h3>Buço</h3>
+                        <span class="service-price">R$ 10,00</span>
+                    </div>
+                    <p class="service-description"></p>
+                    <p class="service-duration">DURAÇÃO: 10 MINUTOS</p>
+                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/joaopinsfp/30min'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
+                </div>
+            </div>
 
-    </main>
+        </div> </section>
+</main>
 
     <!-- Menu Inferior -->
     <nav class="bottom-nav">

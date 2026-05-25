@@ -123,7 +123,14 @@
 }
 
         .hero-content {
-            z-index: 10;
+            /* Essa é a mágica que empurra tudo para baixo 👇 */
+            padding-top: 150px; /* Se achar que desceu muito, mude para 100px. Se quiser mais, mude para 200px */
+            
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
 
         .hero-logo-large {
@@ -132,21 +139,36 @@
         }
 
         .slogan {
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
-            color: var(--text-gold);
+            /* Puxa a fonte elegante do seu site */
+            font-family: 'Playfair Display', serif;
+            
+            /* Aumenta o tamanho da letra */
+            font-size: 3rem; /* No celular pode ficar grande, mas no PC fica lindo! */
+            
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 4px; /* Espaço chique entre as letras */
+            margin-bottom: 15px;
+            line-height: 1.2;
+            
+            /* Uma sombra suave para a letra não sumir no fundo da foto */
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
         }
 
         .hero-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            color: var(--text-gold);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            font-family: var(--fonte-texto), sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: #f1f1f1;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+        }
+        @media (max-width: 768px) {
+            .slogan {
+                font-size: 2rem; /* Fica um pouco menor no celular */
+            }
+            .hero-content {
+                padding-top: 80px; /* Desce um pouco menos no celular */
+            }
         }
 
         .hero-contact {
@@ -394,7 +416,50 @@
             .section-title { font-size: 1.8rem; }
             .about-title { font-size: 2rem; }
         }
+
+        /* --- Setinha Flutuante (Indicador de Rolagem) --- */
+        .scroll-indicator {
+            margin-top: 50px; /* Dá um espaço bom entre o texto e a seta */
+            color: #ffffff;
+            font-size: 2rem; /* Tamanho da seta */
+            opacity: 0.8; /* Deixa ela um pouquinho transparente para ficar chique */
+            
+            /* Chama a animação que vamos criar abaixo */
+            animation: flutuar 2s infinite ease-in-out; 
+        }
+
+        /* --- A Mágica da Animação (Faz pular) --- */
+        @keyframes flutuar {
+            0%, 100% {
+                transform: translateY(0); /* Posição normal */
+            }
+            50% {
+                transform: translateY(15px); /* Desce 15 pixels na metade do tempo */
+            }
+        }
+        /* --- Animação de Ocultar/Mostrar o Menu Inferior --- */
+        #menu-inferior {
+            /* Empurra o menu 100% para baixo (esconde fora da tela) */
+            transform: translateY(100%); 
+            
+            /* Deixa transparente enquanto está escondido */
+            opacity: 0; 
+            
+            /* Cria uma transição suave de 0.4 segundos */
+            transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+            
+            /* Impede que a pessoa clique no menu invisível */
+            pointer-events: none; 
+        }
+
+        /* Essa classe será ativada pelo nosso script para fazer o menu subir */
+        #menu-inferior.mostrar-menu {
+            transform: translateY(0); /* Volta para a posição original */
+            opacity: 1; /* Fica 100% visível */
+            pointer-events: auto; /* Libera os cliques novamente */
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -407,16 +472,15 @@
     <main>
         
         <section id="hero">
-            <div class="hero-content">
-        <img src="imagens/logo.png" alt="RM Romã Studio" class="hero-logo-large"> 
+            <div class="hero-content"> 
         
         <p class="slogan">BELEZA QUE CUIDA DE VOCÊ</p>
         
         <div class="hero-info">
             <p>RIBEIRÃO PRETO, SP</p>
             <div class="hero-contact">
-                <i class="fa-solid fa-phone hero-icon"></i>
-                <p>(16) 99189-1772</p>
+
+                
             </div>
         </div>
     </div>
@@ -426,6 +490,9 @@
                     <a href="https://www.instagram.com/roma_studiorp" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
+            <div class="scroll-indicator">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
         </section>
 
         <section id="highlights">
@@ -463,13 +530,11 @@
                 <h2 class="about-title">SOBRE NÓS</h2>
                 <p class="about-text">
                     Beleza é detalhe, e nós cuidamos dos seus ✨
-<p>- Unhas</p>
-<p>- Sobrancelhas</p>
-<p>- Spa dos pés</p>
-<p>- Micropigmentação</p>
-<p>- Cílios</p>
-<p>- Depilação E +</p>
-<p>📲 Agende via WhatsApp</p>
+                    <p>A arte de realçar a sua melhor versão.
+Localizado em Ribeirão Preto, o RM Romã Studio nasceu do desejo de oferecer uma experiência de beleza premium e inesquecível. Nosso lema é claro: Beleza que cuida de você.
+
+Somos especialistas em tratamentos modernos para unhas, cílios e estética, unindo técnica impecável a um ambiente sofisticado e acolhedor. Entendemos que cada mulher é única, por isso nosso atendimento é totalmente exclusivo, focado em entender seus desejos e entregar resultados que superem expectativas.</p>
+                    
                 <div class="about-socials">
                     <a href="https://www.instagram.com/roma_studiorp" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 </div>
@@ -479,7 +544,7 @@
 
     </main>
 
-    <nav class="bottom-nav">
+    <nav class="bottom-nav" id="menu-inferior">
         <a href="index.html" class="nav-item active">
             <i class="fa-solid fa-house"></i>
             <span>Home</span>
@@ -501,6 +566,17 @@
     <footer>
         Romã Studio — Beleza que cuida de você ✨
     </footer>
-
+<script>
+        window.addEventListener('scroll', function() {
+            var menu = document.getElementById('menu-inferior');
+            
+            // Se a tela for rolada mais de 150 pixels para baixo...
+            if (window.scrollY > 150) {
+                menu.classList.add('mostrar-menu'); // O menu sobe
+            } else {
+                menu.classList.remove('mostrar-menu'); // O menu desce e se esconde
+            }
+        });
+    </script>
 </body>
 </html>
