@@ -63,20 +63,21 @@
             z-index: 100;
         }
 
-        .logo-placeholder {
-            color: var(--cor-branco);
-            font-family: var(--fonte-titulo);
-            font-size: 2.0rem; /* Tamanho maior e elegante */
-            letter-spacing: 2px;
-            text-align: center;
-            line-height: 1;
-        }
-        .logo-placeholder span {
-            display: block;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            font-family: var(--fonte-texto);
-        }
+                /* --- Estilo da Nova Logo em Imagem --- */
+            .logo-link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%; /* Faz o link ocupar a altura total do header */
+                text-decoration: none;
+            }
+
+            .logo-img {
+                height: 40px; /* Ajuste este valor (entre 35px e 50px) para que a logo caiba bem nos 60px do header */
+                width: auto; /* Mantém a proporção da imagem sem achatar */
+                object-fit: contain;
+            }
+       
 
         /* --- Área de Conteúdo --- */
         .container {
@@ -423,11 +424,10 @@
 <body>
 
     <!-- Topo -->
-    <header class="top-header">
-    <div class="logo-placeholder">
-        RM
-        <span>ROMÃ STUDIO</span>
-    </div>
+    <header class="top-header"> <!-- No seu index.html, a classe aqui é "navbar" -->
+    <a href="index.html" style="display: flex; align-items: center; justify-content: center; height: 70px;">
+    <img src="imagens/logo.png" style="height: 35px !important; width: auto !important; transform: scale(1.5); display: block;" alt="Logo Romã Studio">
+</a>
 </header>
 
     <!-- Conteúdo Principal (Tela de Serviços) -->
@@ -459,7 +459,7 @@
                     </div>
                     <p class="service-description">Cuidado profundo com esfoliação e hidratação intensiva.</p>
                     <p class="service-duration">DURAÇÃO: 45 MINUTOS</p>
-                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/joaopinsfp/esfoliacao'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
+                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/johnnyguitarr05/esfoliacao'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
                 </div>
             </div>
 
@@ -472,7 +472,7 @@
                     </div>
                     <p class="service-description">Limpeza, cutilagem e esmaltação perfeita para o dia a dia.</p>
                     <p class="service-duration">DURAÇÃO: 45 MINUTOS</p>
-                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/joaopinsfp/manicure'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
+                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/johnnyguitarr05/30min'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
                 </div>
             </div>
 
@@ -485,7 +485,7 @@
                     </div>
                     <p class="service-description">Cuidado e alongamento dos cílios para um olhar marcante.</p>
                     <p class="service-duration">DURAÇÃO: 120 MINUTOS</p>
-                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/joaopinsfp/cilios-brasileiros'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
+                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/johnnyguitarr05/cilios'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
                 </div>
             </div>
 
@@ -498,7 +498,7 @@
                     </div>
                     <p class="service-description">Cuidado rápido e delicado. Pele do rosto lisa, macia e livre de pelos indesejados.</p>
                     <p class="service-duration">DURAÇÃO: 10 MINUTOS</p>
-                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/joaopinsfp/30min'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
+                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/johnnyguitarr05/buco'});return false;" class="btn-agendar">AGENDE SEU HORÁRIO AQUI!</a>
                 </div>
             </div>
 
